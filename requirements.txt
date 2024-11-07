@@ -4,6 +4,5 @@ numpy
 ta
 asyncio
 aiohttp
-io
 nest_asyncio
 streamlit
