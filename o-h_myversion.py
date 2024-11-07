@@ -8,7 +8,7 @@ from datetime import date
 import numpy as np
 import time
 import ta
-from ta.momentum import 
+
 import asyncio
 import aiohttp
 import io
