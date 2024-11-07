@@ -497,13 +497,14 @@ async def getdata(session, stock):
 
 # Convert to datetime.time object
             time_obj = datetime.strptime(time_string, time_format).time()
+               
 
             
 
 
              
 #----------------------
-
+            st.write(time_obj
             final_df['ma200'] = round(ta.momentum._ema(series=final_df['Close'],periods=200))
             newdf = final_df
             diff = 5
