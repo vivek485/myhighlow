@@ -8,7 +8,7 @@ from datetime import date
 import numpy as np
 import time
 import ta
-from ta.momentum import stoch
+from ta.momentum import 
 import asyncio
 import aiohttp
 import io
@@ -504,7 +504,7 @@ async def getdata(session, stock):
 
              
 #----------------------
-            st.write(time_obj)
+            
             final_df['ma200'] = round(ta.momentum._ema(series=final_df['Close'],periods=200))
             newdf = final_df
             diff = 5
@@ -519,7 +519,7 @@ async def getdata(session, stock):
             newdf = final_df[final_df['time_column']== time_obj].reset_index(drop=True)
             
             last_candle = newdf.iloc[-1]
-            st.write(last_candle)
+            
             if last_candle['seller'] == 2:
                 
                 sellstock.append(last_candle['symbol'])
@@ -671,6 +671,7 @@ async def getdata(session, stock):
             newdf['buyer'] = newdf['sigfinal'] + newdf['o-l']
            
             newdf = final_df[final_df['time_column']== time_obj].reset_index(drop=True)
+            st.write(newdf)
             
             last_candle = newdf.iloc[-1]
             #print(last_candle)
