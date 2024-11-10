@@ -519,7 +519,7 @@ async def getdata(session, stock):
             
             
             last_candle = newdf.iloc[-1]
-            #print(last_candle)
+            st.write(newdf)
             if last_candle['seller'] == 2:
                 
                 sellstock.append(last_candle['symbol'])
