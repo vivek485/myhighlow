@@ -480,6 +480,7 @@ async def getdata(session, stock):
             
 
             final_df.set_index(final_df.datetime, inplace=True)
+            st.write(final_df)
 
             final_df['prevopen'] = final_df['Open'].shift(1)
             final_df['prevhigh'] = final_df['High'].shift(1)
@@ -490,7 +491,7 @@ async def getdata(session, stock):
             final_df['prevclose'] = final_df['Close'].shift(1)
             
 
-            query_time1 = "09:20:00"
+            query_time1 = "09:15:00"
         
             
 
@@ -642,7 +643,7 @@ async def getdata(session, stock):
             final_df['prevlow2'] = final_df['Low'].shift(3)
             final_df['prevhigh2'] = final_df['High'].shift(3)
             final_df['prevclose'] = final_df['Close'].shift(1)
-            query_time1 = "09:20:00"
+            query_time1 = "09:15:00"
             
 
 
