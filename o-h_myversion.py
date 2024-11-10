@@ -480,7 +480,7 @@ async def getdata(session, stock):
             
 
             final_df.set_index(final_df.datetime, inplace=True)
-            st.write(final_df)
+            
 
             final_df['prevopen'] = final_df['Open'].shift(1)
             final_df['prevhigh'] = final_df['High'].shift(1)
