@@ -8,10 +8,10 @@ from datetime import date
 import numpy as np
 import time
 import ta
-
+from ta.momentum import stoch
 import asyncio
 import aiohttp
-import io
+
 import nest_asyncio
 from ta.volatility import keltner_channel_hband , keltner_channel_lband, keltner_channel_mband
 from ta.trend import macd, macd_diff
@@ -488,23 +488,22 @@ async def getdata(session, stock):
             final_df['prevlow2'] = final_df['Low'].shift(3)
             final_df['prevhigh2'] = final_df['High'].shift(3)
             final_df['prevclose'] = final_df['Close'].shift(1)
-            final_df['time_column'] = final_df['datetime'].dt.time
             
-            time_string = "09:15:00"
 
-# Define the format matching the string
-            time_format = "%H:%M:%S"
+            query_time1 = "09:15:00"
+        
+            
 
-# Convert to datetime.time object
-            time_obj = datetime.strptime(time_string, time_format).time()
-               
+            # Filter rows where the time part of the DateTime index matches the query time
+            
+
 
             
 
 
              
 #----------------------
-            
+
             final_df['ma200'] = round(ta.momentum._ema(series=final_df['Close'],periods=200))
             newdf = final_df
             diff = 5
@@ -516,10 +515,11 @@ async def getdata(session, stock):
            
            
             newdf['seller'] = newdf['sigfinal'] + newdf['o-h']
-            newdf = final_df[final_df['time_column']== time_obj].reset_index(drop=True)
+            newdf = final_df[final_df.index.time == pd.to_datetime(query_time1).time()]
+            
             
             last_candle = newdf.iloc[-1]
-            
+            #print(last_candle)
             if last_candle['seller'] == 2:
                 
                 sellstock.append(last_candle['symbol'])
@@ -642,15 +642,9 @@ async def getdata(session, stock):
             final_df['prevlow2'] = final_df['Low'].shift(3)
             final_df['prevhigh2'] = final_df['High'].shift(3)
             final_df['prevclose'] = final_df['Close'].shift(1)
-            final_df['time_column'] = final_df['datetime'].dt.time
+            query_time1 = "09:15:00"
             
-            time_string = "09:15:00"
 
-# Define the format matching the string
-            time_format = "%H:%M:%S"
-
-# Convert to datetime.time object
-            time_obj = datetime.strptime(time_string, time_format).time()
 
             
 
@@ -670,8 +664,7 @@ async def getdata(session, stock):
             newdf['o-l'] = np.where((newdf['Open'] == newdf['Low']),2,0)
             newdf['buyer'] = newdf['sigfinal'] + newdf['o-l']
            
-            newdf = final_df[final_df['time_column']== time_obj].reset_index(drop=True)
-            st.write(newdf)
+            newdf = final_df[final_df.index.time == pd.to_datetime(query_time1).time()]
             
             last_candle = newdf.iloc[-1]
             #print(last_candle)
