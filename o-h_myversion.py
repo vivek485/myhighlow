@@ -490,7 +490,7 @@ async def getdata(session, stock):
             final_df['prevclose'] = final_df['Close'].shift(1)
             
 
-            query_time1 = "09:15:00"
+            query_time1 = "09:20:00"
         
             
 
@@ -519,7 +519,7 @@ async def getdata(session, stock):
             
             
             last_candle = newdf.iloc[-1]
-            st.write(newdf)
+            #st.write(newdf)
             if last_candle['seller'] == 2:
                 
                 sellstock.append(last_candle['symbol'])
@@ -642,7 +642,7 @@ async def getdata(session, stock):
             final_df['prevlow2'] = final_df['Low'].shift(3)
             final_df['prevhigh2'] = final_df['High'].shift(3)
             final_df['prevclose'] = final_df['Close'].shift(1)
-            query_time1 = "09:15:00"
+            query_time1 = "09:20:00"
             
 
 
