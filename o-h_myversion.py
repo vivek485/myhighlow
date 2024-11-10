@@ -19,7 +19,7 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 st.title('Stock Trading Open High Low my version 200ma crossing')
-
+query_time1 = "03:45:00"
 
 
 s = ['CUMMINSIND',
@@ -491,7 +491,7 @@ async def getdata(session, stock):
             final_df['prevclose'] = final_df['Close'].shift(1)
             
 
-            query_time1 = "09:15:00"
+            
         
             
 
@@ -643,7 +643,7 @@ async def getdata(session, stock):
             final_df['prevlow2'] = final_df['Low'].shift(3)
             final_df['prevhigh2'] = final_df['High'].shift(3)
             final_df['prevclose'] = final_df['Close'].shift(1)
-            query_time1 = "09:15:00"
+            
             
 
 
